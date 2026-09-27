@@ -85,27 +85,25 @@ To validate performance telemetry under load:
 2. Updated local package indexes using sudo apt-get update.
 
 ![Update Apt Packages](install-aptupdate.png)
+
 *Running package update on vmscalese000000.*
 
 3. Installed the synthetic load generator stress.
 
 ![Install Stress](install-stress.png)
+
 *Installing stress package on vmscalese000000.*
 
 4. Executed the stress test generating 100 worker processes to consume CPU resources.
 
 ![Run Stress Command](cpu-stress.png)
+
 *Dispatching 100 CPU stress hogs.*
 
 5. Monitored Percentage CPU (Avg) on instance vmscaleset_0 in the Azure Portal, verifying sustained saturation past 85% to confirm Azure Monitor responsiveness.
 
 ![CPU Utilization](cpu-utilized.png)
+
 *Azure Monitor CPU metric spike captured during the stress test.*
 
----
 
-## 3. Engineering Takeaways
-
-* Decoupled Bootstrapping: Custom Script Extensions permit dynamic software deployment from Azure Blob Storage on clean marketplace images without maintaining separate custom machine images.
-* Manual Upgrade Lifecycle: When VMSS instances operate under manual upgrade mode, changes to scale set models or extension configurations require explicit manual upgrades across all instances.
-* Unattended Script Execution: Commands executed by VM extensions require non-interactive parameters (-y) to prevent process hangs during provisioning.
